@@ -14,9 +14,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-       $posts = Post::all(); 
-       
-        return view('welcome',compact('posts'));
+        $posts = Post::all();
+
+        return view('welcome', compact('posts'));
     }
 
     /**
@@ -24,9 +24,9 @@ class PostsController extends Controller
      */
     public function create()
     {
-        $user =User::all();
-        
-        return view('posts.create',compact('user'));
+        $user = User::all();
+
+        return view('posts.create', compact('user'));
     }
 
     /**
@@ -46,32 +46,45 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        //
+
+        $datas = Post::all();
+        $data = $datas->find($post);
+        return view('posts.show', compact('data'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        //
+        $user = User::all();
+        return view('posts.edit', compact('post', 'user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post) 
     {
-        //
+        
+        $post->update([
+            'book_name' => $request->book_name,
+            'mail' => $request->email,
+            'description'=>$request->description,
+
+        ]);
+        return redirect()->route('posts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('posts.index');
     }
 }

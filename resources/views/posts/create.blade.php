@@ -13,7 +13,7 @@
 
       <div class="form-group">
         <label for="itemName">Email </label>
-        <input type="email" class="form-control" id="itemName" name="email" placeholder="Enter book name" required>
+        <input type="email" class="form-control" id="itemName" name="email" placeholder="Enter your mail" required>
       </div>
       
       <!-- book Description -->
@@ -29,7 +29,6 @@
         <select class="form-control" id="bookCategory" name="user_id" required>
           <option value="" disabled selected>Select the Auther</option>
           @foreach ($user as $user)
-          @dd($user->posts->book_name)
           <option value="{{$user->id}}">{{$user->name}}</option>
           @endforeach
         </select>

@@ -21,9 +21,11 @@
             <td>{{$post->book_name}}</td>
             <td>{{$post->mail}}</td>
             <td colspan="3" class="inline">
-                <a class="btn btn-sm btn-outline-primary d-inline" href="#">View</a>
-                <a class="btn btn-sm btn-outline-success d-inline" href="#">Edit</a>
-                <form action="" method="post" class="d-inline">
+                <a class="btn btn-sm btn-outline-primary d-inline" href="{{route('posts.show',$post->id)}}">View</a>
+                <a class="btn btn-sm btn-outline-success d-inline" href="{{route('posts.edit',$post->id)}}">Edit</a>
+                <form action="{{route('posts.destroy',$post->id)}}" method="post" class="d-inline">
+                    @csrf
+                    @method('delete')
                     <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                 </form>
                 
